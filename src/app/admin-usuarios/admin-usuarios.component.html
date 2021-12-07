@@ -1,0 +1,99 @@
+<div *ngIf="servicioBackend.authorized; else templateNoAutorized">
+    <div class=" my-4 ">
+
+        <div class="d-flex flex-row ">
+            <label class="mx-2 " for=" ">Seleccione tipo de usuario</label>
+            <select class="mx-2 " name=" " id=" ">
+                <option value="option.codigo " *ngFor="let option of tiposDeUsuarios ">
+                    {{option.texto}}
+                </option>
+            </select>
+
+
+            <button class="mx-2 " type="button " class="ms-2 btn btn-warning ">Filtrar</button>
+            <button class="mx-2 " type="button " class="ms-2 btn btn-success " (click)="abrirFormulario() ">Crear Usuario</button>
+
+        </div>
+
+    </div>
+
+    <div class="my-4 " *ngIf="openModalCrear " [formGroup]="formGroupUsuario">
+        <h3>Formulario Usuario</h3>
+
+
+        <div class="d-flex flex-row ">
+            <div class="mb-3 me-3 ">
+                <label for="exampleFormControlInput1 ">Nombres</label>
+                <input type="text " class="form-control " id="exampleFormControlInput1 " formControlName="nombres" placeholder="">
+            </div>
+            <div class="mb-3 me-3 ">
+                <label for="exampleFormControlInput1 ">Apellidos</label>
+                <input type="text " class="form-control " id="exampleFormControlInput1 " formControlName="apellidos" placeholder=" ">
+            </div>
+            <div class="mb-3 me-3 ">
+                <label for="exampleFormControlInput1 ">Correo</label>
+                <input type="email " class="form-control " id="exampleFormControlInput1 " formControlName="correo" placeholder=" ">
+            </div>
+            <div class="mb-3 me-3 ">
+                <label for="exampleFormControlInput1 ">Contraseña</label>
+                <input type="password " class="form-control " id="exampleFormControlInput1 " formControlName="contrasenia" placeholder=" ">
+            </div>
+            <div class="mb-3 me-3 ">
+                <label for="exampleFormControlSelect1 ">Perfil</label>
+                <select class="form-control " id="exampleFormControlSelect1 " formControlName="perfilId">
+                    <option>Estudiante</option>
+                    <option>Docente</option>
+                    <option>Administrador</option>
+                  </select>
+            </div>
+            <br>
+            <button *ngIf="modoFormulario == 'adicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-success " type="button " (click)="crearUsuario()">Guardar</button>
+
+            <button *ngIf="modoFormulario == 'edicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-success " type="button " (click)="editarUsuario()">Guardar</button>
+
+            <button *ngIf="modoFormulario =='edicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-warning " type="button " (click)="cambiarModoAdicion()">Cancelar</button>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <div>
+        <table class="table table-hover ">
+            <thead>
+                <tr>
+                    <th style="display:none" scope="col ">ID</th>
+                    <th scope="col ">Nombre</th>
+                    <th scope="col ">Apellido</th>
+                    <th scope="col ">Correo</th>
+                    <th scope="col ">Perfil</th>
+                    <th scope="col ">Acción</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of listaUsuarios ">
+                    <th style="display:none" scope="row ">{{usuario.id}}</th>
+                    <td>{{usuario.nombres}}</td>
+                    <td>{{usuario.apellidos}}</td>
+                    <td>{{usuario.correo}}</td>
+                    <td>{{usuario.perfilId}}</td>
+                    <td>
+                        <button class="mx-2 ms-2 btn btn-warning " type="button " (click)="entrarModoEdicion(usuario)">Editar</button>
+                        <button class="mx-2 ms-2 btn btn-danger " type="button " (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+                    </td>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<ng-template #templateNoAutorized>
+
+    <h1>No estás autorizado</h1>
+
+</ng-template>

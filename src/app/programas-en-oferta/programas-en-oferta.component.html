@@ -1,0 +1,16 @@
+<h2 align="center">Únete a nuestros Programas</h2>
+
+<div class="d-flex flex-wrap">
+    <div *ngFor="let item of listaProgramas" class="card m-2">
+        <div class="card" style="width: 18rem;">
+            <img src="https://media.giphy.com/media/12YpJx9jXOiKk/giphy.gif" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{item.Nombre}}</h5>
+                <h5 class="card-title">{{item.tipo}}</h5>
+                <p class="card-text">{{item.creditos}}</p>
+                <a href="#" class="btn btn-primary">Ver más</a>
+            </div>
+        </div>
+    </div>
+
+</div>

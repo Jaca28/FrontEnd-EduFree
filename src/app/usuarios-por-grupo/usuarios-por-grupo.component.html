@@ -1,0 +1,88 @@
+<div class=" my-4 ">
+
+    <div class="d-flex flex-row ">
+
+        <button class="mx-2 " type="button " class="ms-2 btn btn-success " (click)="abrirFormulario() ">Agregar Usuario a un Grupo</button>
+
+    </div>
+
+</div>
+
+
+<div class="my-4 " *ngIf="openModalCrear" [formGroup]="formGroupUsuariosPorGrupo">
+    <h3>Formulario de adición de Usuarios a Grupos</h3>
+
+
+    <div class="d-flex flex-row ">
+        <div class="mb-3 me-3 ">
+            <label for="exampleFormControlInput1 ">Id de Usuario</label>
+            <input type="text " class="form-control " id="exampleFormControlInput1 " formControlName="usuarioId" placeholder="">
+        </div>
+        <div class="mb-3 me-3 ">
+            <label *ngIf="openModalCalificar == false" for="exampleFormControlInput1">Id de Grupo</label>
+            <input *ngIf="openModalCalificar == false" type="text " class="form-control " id="exampleFormControlInput1 " formControlName="grupoId" placeholder=" ">
+        </div>
+        <div class="mb-3 me-3 ">
+            <label *ngIf="openModalCalificar == true" for="exampleFormControlInput1 ">Calificación 1</label>
+            <input *ngIf="openModalCalificar == true" type="text " class="form-control " id="exampleFormControlInput1 " formControlName="calificacion1" placeholder=" ">
+        </div>
+        <div class="mb-3 me-3 ">
+            <label *ngIf="openModalCalificar == true" for="exampleFormControlInput1 ">Calificación 2</label>
+            <input *ngIf="openModalCalificar == true" type="text " class="form-control " id="exampleFormControlInput1 " formControlName="calificacion2" placeholder=" ">
+        </div>
+        <div class="mb-3 me-3 ">
+            <label *ngIf="openModalCalificar == true" for="exampleFormControlInput1 ">Calificación 3</label>
+            <input *ngIf="openModalCalificar == true" type="text " class="form-control " id="exampleFormControlInput1 " formControlName="calificacion3" placeholder=" ">
+        </div>
+        <br>
+        <button *ngIf="modoFormulario == 'adicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-success " type="button" (click)="crearUsuariosPorGrupo()">Guardar</button>
+
+        <button *ngIf="modoFormulario == 'edicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-success " type="button" (click)="editarUsuariosPorGrupo()">Guardar</button>
+
+        <button *ngIf="modoFormulario =='edicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-warning " type="button" (click)="cambiarModoAdicion()">Cancelar</button>
+
+
+    </div>
+
+</div>
+
+
+
+
+<div>
+    <table class="table table-hover ">
+        <thead>
+            <tr>
+                <th style="display:none" scope="col ">ID</th>
+                <th scope="col ">Id de Usuario</th>
+                <th scope="col ">Id de Grupo</th>
+                <th scope="col ">Calificación 1</th>
+                <th scope="col ">Calificación 2</th>
+                <th scope="col ">Calificación 3</th>
+                <th scope="col ">Acción</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuarioPorGrupo of listaUsuariosPorGrupo">
+                <th style="display:none" scope="row ">{{usuarioPorGrupo.id}}</th>
+                <td>{{usuarioPorGrupo.usuarioId}}</td>
+                <td>{{usuarioPorGrupo.grupoId}}</td>
+                <td>{{usuarioPorGrupo.calificacion1}}</td>
+                <td>{{usuarioPorGrupo.calificacion2}}</td>
+                <td>{{usuarioPorGrupo.calificacion3}}</td>
+                <td>
+                    <button class="mx-2 ms-2 btn btn-warning " type="button" (click)="entrarModoEdicion(usuarioPorGrupo)">Editar</button>
+                    <button class="mx-2 ms-2 btn btn-success " type="button" (click)="entrarModoCalificacion(usuarioPorGrupo)">Calificar</button>
+                    <button class="mx-2 ms-2 btn btn-danger " type="button" (click)="eliminarUsuariosPorGrupo(usuarioPorGrupo.id)">Eliminar</button>
+                </td>
+
+        </tbody>
+    </table>
+</div>
+
+<ng-template #templateNoAutorized>
+
+    <h1>No estás autorizado</h1>
+
+</ng-template>

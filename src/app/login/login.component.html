@@ -1,0 +1,45 @@
+<div>
+
+    <div [formGroup]="formLogin">
+
+        <div class="mrg">
+            <img src="/assets/images/login-bg.jpg" alt="" class="cls-image-bg">
+
+            <div class="container  mrg">
+
+                <h1 align="center">{{ titulo}} </h1>
+
+                <div class="mrg2">
+                    <label> Correo Electrónico</label>
+                    <input formControlName="correo" type="email" class="form-control" placeholder="Ingrese su Email" id="email" required>
+                    <label>Contraseña</label>
+                    <input formControlName="contrasenia" type="password" class="form-control" placeholder="Ingrese su contraseña" id="password" required>
+                    <input class="ms-2" type="checkbox" checked="checked">Aceptar términos y condiciones
+                    <br>
+
+                    <button class="btnen" align="center" style="width:160% align=center" [disabled]="!formLogin.valid" (click)="login()">Entrar</button>
+                    <br>
+
+                    <a style="width:160% align=center" routerLink="/registro-de-usuario">Regístrate Ahora!</a>
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>

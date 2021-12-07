@@ -1,0 +1,86 @@
+<div class=" my-4 ">
+
+    <div class="d-flex flex-row ">
+
+        <button class="mx-2 " type="button " class="ms-2 btn btn-success " (click)="abrirFormulario() ">Crear Asignatura</button>
+
+    </div>
+
+</div>
+
+
+<div class="my-4 " *ngIf="openModalCrear " [formGroup]="formGroupAsignaturas">
+    <h3>Formulario Asignatura</h3>
+
+
+    <div class="d-flex flex-row ">
+        <div class="mb-3 me-3 ">
+            <label for="exampleFormControlInput1 ">Nombre</label>
+            <input type="text " class="form-control " id="exampleFormControlInput1 " formControlName="nombre" placeholder="">
+        </div>
+        <div class="mb-3 me-3 ">
+            <label for="exampleFormControlInput1 ">Céditos</label>
+            <input type="text " class="form-control " id="exampleFormControlInput1 " formControlName="creditos" placeholder=" ">
+        </div>
+        <div class="mb-3 me-3 ">
+            <label for="exampleFormControlInput1 ">Código</label>
+            <input type="email " class="form-control " id="exampleFormControlInput1 " formControlName="codigoAsignatura" placeholder=" ">
+        </div>
+        <!-- <div class="mb-3 me-3 ">
+            <label for="exampleFormControlInput1 ">Área de Conocimiento</label>
+            <input type="password " class="form-control " id="exampleFormControlInput1 " formControlName="areaDeConocimiento" placeholder=" ">
+        </div> -->
+        <div class="mb-3 me-3 ">
+            <label for="exampleFormControlSelect1 ">Programa Académico</label>
+            <input type="password " class="form-control " id="exampleFormControlInput1 " formControlName="programaAcademicoId" placeholder=" ">
+        </div>
+        <br>
+        <button *ngIf="modoFormulario == 'adicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-success " type="button" (click)="crearAsignatura()">Guardar</button>
+
+        <button *ngIf="modoFormulario == 'edicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-success " type="button" (click)="editarAsignatura()">Guardar</button>
+
+        <button *ngIf="modoFormulario =='edicion'" class="mx-2 cls-boton-guardar ms-2 btn btn-warning " type="button" (click)="cambiarModoAdicion()">Cancelar</button>
+
+
+    </div>
+
+
+
+
+</div>
+
+<div>
+    <table class="table table-hover ">
+        <thead>
+            <tr>
+                <th style="display:none" scope="col ">ID</th>
+                <th scope="col ">Nombre</th>
+                <th scope="col ">Créditos</th>
+                <th scope="col ">Código Asignatura</th>
+                <th scope="col ">Programa Académico</th>
+                <th scope="col ">Acción</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let asignatura of listaAsignaturas ">
+                <th style="display:none" scope="row ">{{asignatura.id}}</th>
+                <td>{{asignatura.nombre}}</td>
+                <td>{{asignatura.creditos}}</td>
+                <td>{{asignatura.codigoAsignatura}}</td>
+                <td>{{asignatura.programaAcademicoId}}</td>
+                <td>
+                    <button class="mx-2 ms-2 btn btn-warning " type="button" (click)="entrarModoEdicion(asignatura)">Editar</button>
+                    <button class="mx-2 ms-2 btn btn-danger " type="button" (click)="eliminarAsignatura(asignatura.id)">Eliminar</button>
+                </td>
+
+        </tbody>
+    </table>
+</div>
+
+
+<ng-template #templateNoAutorized>
+
+    <h1>No estás autorizado</h1>
+
+</ng-template>

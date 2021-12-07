@@ -1,0 +1,28 @@
+.cls-header {
+    h4 {
+        color: #fff;
+    }
+}
+
+.cls-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    color: #fff
+}
+
+.cls-siderbar {
+    height: calc(100vh - 116px);
+    .cls-item {
+        cursor: pointer;
+    }
+    .cls-item a:hover {
+        transform: scale(1.1);
+        background-color: rgb(108, 108, 112);
+    }
+}
+
+.cls-body {
+    width: 100%;
+    overflow-y: auto;
+}
